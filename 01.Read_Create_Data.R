@@ -1,11 +1,14 @@
-#|| Read and Create Data ||#
-
+---------------------------------------------------------------------------------------------------------
+                                        #|| Read and Create Data ||#
+---------------------------------------------------------------------------------------------------------
+  
 #Install Packages
 install.packages("TSA")
 install.packages("vars")
 install.packages("ggplot2")
 install.packages("tidyverse")
 install.packages("readxl")
+install.packages("xlsx")
 install.packages("MASS")
 install.packages("dplyr")
 
@@ -15,11 +18,12 @@ library(vars)
 library(ggplot2)
 library(tidyverse)
 library(readxl)
+library(xlsx)
 library(dplyr)
 library(xts)
 library(broom)
 
------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 #1. Datensatz einlesen aus Excel
 df <- read_excel("final_v11.xlsx", 
                  sheet = "Final Dataframe", col_types = c("date", 
@@ -67,6 +71,7 @@ names(ts_df) <- ts_df_names
 
 
 #5. Creating First Differences
+
 #5.1 For xts Object [xts_df]
 diff_xts_df<-diff(xts_df)
   class(diff_xts_df)

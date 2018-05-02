@@ -1,36 +1,3 @@
-######  Word-of-Mout  #####
-## Plot the Variable
-summary(ts_df$W_v3)
-plot(density(ts_df$W_v3))
-lines(seq(0, 100, by=5), dnorm(seq(0, 100, by=5),
-                                mean(ts_df$W_v3), sd(ts_df$W_v3)), col="blue")
-# Plot First Difference
-W_v3df<-diff(ts_df$W_v3,1) 
-W_v3f.X <- W_v3df[W_v3df!= 0] #remove all 0
-plot(density(W_v3f.X))
-lines(seq(-100, 100, by=5), dnorm(seq(-100, 100, by=5),
-                               mean(W_v3f.X), sd(W_v3f.X)), col="blue")
-## Test for Normality for normal Variable & First differences
-jarque.bera.test(ts_df$W_v3)
-jarque.bera.test(W_v3f.X)
-
-########### Normal QQ Plot for Word od Mouth
-qqnorm(ts_df$W_v3, ylim=c(-5,100), xlim=c(-5,100))
-qqline(x)
-#Only Scaling
-W_v3s<-scale(df$W_v3, center=TRUE, scale=TRUE)
-qqnorm(W_v3s, ylim=c(-10,10))
-qqline(x)
-#Standardize and Scale Word of Mouth to create another QQ Plot
-W_v3z <- (W_v3f.X - mean(W_v3f.X))/sd(W_v3f.X) 
-tsW_v3scale<-scale(W_v3z, center=TRUE, scale=TRUE)
-qqnorm(tsW_v3scale, ylim=c(-10,10))
-qqline(x)
-
-#Funktion die automatisch eine ARIMA vorschlägt
-auto.arima(df$W_v3)
-
-
 #######Data Transformation ####### 
 
 ## Differences, 
