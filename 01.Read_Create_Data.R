@@ -24,7 +24,7 @@ library(xts)
 library(broom)
 
 ---------------------------------------------------------------------------------------------------------
-#1. Datensatz einlesen aus Excel
+#1. Datensatz einlesen aus Excel 
 df <- read_excel("final_v11.xlsx", 
                  sheet = "Final Dataframe", col_types = c("date", 
                                                           "numeric", "numeric", "numeric", 
@@ -41,8 +41,7 @@ ndv <- rnorm(1000000)
   plot(density(ndv))
 
 #3. Transfrom Data Frame [df] into Time Series Data Frame with xts/zoo [xts_df] (diffrent form ts.object)
-  #Notize an Nora: hier habe ich select in ind dplyr::select geändert und einfach das Datum, dass wir
-  #schon hatten als Bezug für das xts object genommen, so brauchen wir Date_2 gar nicht
+
 df$Date <- as.Date(df$Date)
   names(df)
   
@@ -51,7 +50,7 @@ xts_df <- xts(df[,-1], order.by=df$Date)
   names(xts_df)
 
 #4. Transfrom Data Frame [df] into Time Series Objects [ts_df] 
-    #ATTENTION: Data from 02/01/2018 to 31/03/2018 is deleted -> adjustment needed
+
 ts_df <- data.frame(
       as.ts(df$W_v1, start=c(2012,3,31), end=c(2018,3,31), frequency=365),
       as.ts(df$W_v2, start=c(2012,3,31), end=c(2018,3,31), frequency=365),
@@ -90,7 +89,6 @@ ts_df$Date[-1])
   class(diff_ts_df)
   names(diff_ts_df)
 
-ts_df_names <- c("W_v1","W_v2","W_v3", "S", "U", "P", "Date")
 names(diff_ts_df) <- ts_df_names
   names(diff_ts_df)
 
